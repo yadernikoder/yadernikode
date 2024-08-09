@@ -41,7 +41,7 @@ function guess() {
             alert('Congratulations! You guessed the word.');
             location.reload(); // Reload the page
         }, 500); // Delay to allow sound to finish
-    } else if (attempts >= 7) {
+    } else if (attempts >= 10) {
         setTimeout(() => {
             alert(`Sorry, you lost! The word was "${toGuess}".`);
             location.reload(); // Reload the page
