@@ -57,3 +57,8 @@ function updateScore(newScore) {
     score = newScore
     scoreElement.innerHTML = 'Score: ' + score
 }
+
+// Function to simulate key press
+function simulateKeyPress(key) {
+    checkKey({ key: key })
+}
