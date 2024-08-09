@@ -3,21 +3,18 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="hello.css"
+        <title>Daily Wordle</title>
+        <link rel="stylesheet" href="hello.css" />
     </head>
-    <body">
-        <center>
+    <body>
+        <div class="container">
             <h1>Daily Wordle</h1>
-
-            <input type="text" placeholder="" id="wordId" />
-            <button onclick="guess()" id="TRY">try</button>
-
-            <br />
-            <br />
-
+            <input type="text" placeholder="Enter your guess" id="wordId" />
+            <button onclick="guess()" id="TRY">Try</button>
             <div id="container"></div>
-        </center>
+            <div id="attempts">Attempts: 0</div>
+        </div>
+        <audio id="guessSound" src="path/to/sound.mp3"></audio>
         <script src="whatever.js"></script>
     </body>
 </html>
