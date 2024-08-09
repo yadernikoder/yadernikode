@@ -1,0 +1,18 @@
+#backToPage1 {
+    width: 350px;  /* Make the button take full width */
+    padding: 30px; 
+    border: none; 
+    background-color: #007bff; 
+    color: white; 
+    cursor: pointer; 
+
+   
+  }
+  body {
+    background-color: #35797b; /* Page background */
+    margin: 0; /* Remove default margin */
+    height: 100vh; /* Ensure the body takes full height of the viewport */
+   
+    justify-content: center;
+    align-items: center;
+  }
