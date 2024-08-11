@@ -1,3 +1,8 @@
+// Get the audio elements
+let clickSound = document.getElementById('ClickSound');
+let winSound = document.getElementById('ClickSoundw');
+let loseSound = document.getElementById('ClickSoundl');
+
 let scoreElement = document.getElementById('scoreId');
 let arrowElement = document.getElementById('arrowId');
 let score = 0;
@@ -33,6 +38,7 @@ function checkKey(info) {
         userPicked = 1;
     } else if (info.key === 'ArrowRight') {
         userPicked = 2;
+        clickSound.play(); // Play sound for correct key press
     } else if (info.key === 'ArrowDown') {
         userPicked = 3;
     } else {
@@ -42,8 +48,10 @@ function checkKey(info) {
     if (userPicked === picked) {
         updateScore(score + 1);
     } else {
-        updateScore(0);
-        location.reload(); // Refresh the page without alert
+        loseSound.play(); // Play lose sound
+        setTimeout(() => {
+            location.reload(); // Refresh the page after 5 seconds
+        }, 5000);
     }
 }
 
@@ -60,14 +68,17 @@ function updateScore(newScore) {
     }
 
     if (score >= 10000) {
-        alert('Congratulations! You won!');
-        location.reload(); // Refresh the page after winning
+        winSound.play(); // Play win sound
+        setTimeout(() => {
+            location.reload(); // Refresh the page after 5 seconds
+        }, 50);
     }
 }
 
 // Function to simulate key press
 function simulateKeyPress(key) {
     checkKey({ key: key });
+    clickSound.play()
 }
 
 // Function to display the best score
@@ -83,3 +94,7 @@ function displayBestScore() {
 document.addEventListener("DOMContentLoaded", function() {
     displayBestScore();
 });
+
+function goBack() {
+    window.location.href = 'bank.html'; // Replace with the actual file name of the previous page
+}

@@ -1,5 +1,5 @@
 // Array of possible words
-const words = ['house', 'frame', 'gamer', 'money', 'pause', 'grass', 'glass', 'chair', 'table']; // Add more words as needed
+const words = ['house', 'frame', 'gamer', 'money', 'pause', 'grass', 'glass', 'Daily', 'table', 'About', 'Alert', 'Audio', 'among', 'Basic', 'craft', 'check', 'Adult']; // Add more words as needed
 
 // Select a random word from the array
 let toGuess = words[Math.floor(Math.random() * words.length)];
@@ -10,6 +10,8 @@ let inputElement = document.getElementById('wordId');
 let container = document.getElementById('container');
 let attemptsElement = document.getElementById('attempts');
 let guessSound = document.getElementById('guessSound');
+let guessSoundWin = document.getElementById('guessSoundWin');
+let guessSoundLoose = document.getElementById('guessSoundLoose');
 
 function guess() {
     let inputValue = inputElement.value.trim().toLowerCase();
@@ -38,13 +40,17 @@ function guess() {
     // Check for win or loss
     if (inputValue === toGuess) {
         setTimeout(() => {
-            alert('Congratulations! You guessed the word.');
-            location.reload(); // Reload the page
+            guessSoundWin.play();
+
+            setTimeout(() => location.reload(), 7000); // Reload the page after 7 seconds
+             
+            setTimeout(() => alert('Congratulations! You guessed the word.'), 6000);
         }, 500); // Delay to allow sound to finish
     } else if (attempts >= 10) {
         setTimeout(() => {
-            alert(`Sorry, you lost! The word was "${toGuess}".`);
-            location.reload(); // Reload the page
+            guessSoundLoose.play();
+            setTimeout(() => location.reload(), 5000); // Reload the page after 7 seconds
+            setTimeout(() => alert(`Sorry, you lost! The word was "${toGuess}".`), 5000);
         }, 500); // Delay to allow sound to finish
     }
 }
@@ -57,4 +63,8 @@ function check(letter, index) {
         return 'yellow';
     }
     return 'red';
+}
+
+function goBack() {
+    window.location.href = 'bank.html'; // Replace with the actual file name of the previous page
 }

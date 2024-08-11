@@ -124,3 +124,6 @@ function resetGame() {
         location.reload();
     }, 5000);
 }
+function goBack() {
+    window.location.href = 'bank.html'; // Replace with the actual file name of the previous page
+}

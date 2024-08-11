@@ -30,3 +30,8 @@ document.getElementById('openPageButton1').addEventListener('click', function() 
 document.getElementById('openPageButton2').addEventListener('click', function() {
     window.location.href = 'BIBIBIndex.html'; // Replace 'newpage.html' with the path to your new HTML file
 });
+
+document.getElementById('openPageButton3').addEventListener('click', function() {
+    window.location.href = 'BaBaBaBindex.html'; // Replace 'newpage.html' with the path to your new HTML file
+});
+
