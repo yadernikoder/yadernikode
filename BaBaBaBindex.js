@@ -1,8 +1,8 @@
-// Load the sound
+
 const clickSound = new Audio('mixkit-modern-technology-select-3124.wav');
 
 function playSound() {
-    clickSound.currentTime = 0; // Rewind to the start
+    clickSound.currentTime = 0; 
     clickSound.play();
 }
 
@@ -40,6 +40,6 @@ function appendRandomNumber() {
 }
 
 function goBack() {
-    window.location.href = 'bank.html'; // Replace with the actual file name of the previous page
+    window.location.href = 'bank.html'; 
 }
 

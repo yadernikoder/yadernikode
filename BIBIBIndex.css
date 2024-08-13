@@ -1,6 +1,6 @@
 html,
 body {
-    height: 100vh; /* to fix the height of the background */
+    height: 100vh; 
 }
 
 body {
@@ -113,7 +113,7 @@ body {
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    display: none; /* Hide initially until the game starts */
+    display: none; 
 }
 
 
@@ -121,7 +121,7 @@ body {
 #player,
 #enemy,
 #floor {
-    display: none; /* Hide these elements until the game starts */
+    display: none; 
 }
 
 #overId,
@@ -133,7 +133,7 @@ body {
 #goBackButton {
     position: fixed;
     top: 20px;
-    left: 20px;
+    right: 20px;
     padding: 10px 20px;
     font-size: 16px;
     background-color: #4CAF50;

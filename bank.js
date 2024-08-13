@@ -35,3 +35,7 @@ document.getElementById('openPageButton3').addEventListener('click', function() 
     window.location.href = 'BaBaBaBindex.html'; // Replace 'newpage.html' with the path to your new HTML file
 });
 
+document.getElementById('openPageButton4').addEventListener('click', function() {
+    window.location.href = 'translateindex.html'; // Replace 'newpage.html' with the path to your new HTML file
+});
+

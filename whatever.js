@@ -1,5 +1,5 @@
 // Array of possible words
-const words = ['house', 'frame', 'gamer', 'money', 'pause', 'grass', 'glass', 'Daily', 'table', 'About', 'Alert', 'Audio', 'among', 'Basic', 'craft', 'check', 'Adult']; // Add more words as needed
+const words = ['house', 'frame', 'gamer', 'money', 'pause', 'grass', 'glass', 'Daily', 'table', 'About', 'Alert', 'Audio', 'among', 'Basic', 'craft', 'check', 'adult']; // Add more words as needed
 
 // Select a random word from the array
 let toGuess = words[Math.floor(Math.random() * words.length)];

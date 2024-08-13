@@ -2,11 +2,10 @@
 function login() {
     let username = document.getElementById("username").value;
     localStorage.setItem("username", username);
-    // Ensure a default score of 0 for a new user
     if (!localStorage.getItem(username + "_score")) {
         localStorage.setItem(username + "_score", 0);
     }
-    location.href = "game.html"; // Redirect to the game page
+    location.href = "game.html"; 
     let audio = new Audio("ADF.mp3");
     audio.play(); 
 }
@@ -125,5 +124,5 @@ function resetGame() {
     }, 5000);
 }
 function goBack() {
-    window.location.href = 'bank.html'; // Replace with the actual file name of the previous page
+    window.location.href = 'bank.html'; 
 }

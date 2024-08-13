@@ -1,0 +1,150 @@
+/* Styles for the container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+/* Button styles */
+#rng-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    margin-top: 20px;
+}
+
+/* Slot machine container */
+#slot-machine {
+    width: 300px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Event name display */
+#event-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    transform: translateY(0);
+    transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Animation for slot machine */
+.animation-spin {
+    animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Additional animations */
+.animation-fade {
+    animation: fade 1s forwards;
+}
+
+@keyframes fade {
+    from {
+        background-color: yellow;
+    }
+    to {
+        background-color: #35797b;
+    }
+}
+
+.animation-rainbow {
+    animation: rainbow 1s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { background-color: red; }
+    14% { background-color: orange; }
+    28% { background-color: yellow; }
+    42% { background-color: green; }
+    57% { background-color: blue; }
+    71% { background-color: indigo; }
+    85% { background-color: violet; }
+    100% { background-color: red; }
+}
+
+/* Shine effect for corners */
+.shine-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Prevent interaction with the shine effect */
+    background: linear-gradient(to bottom right, yellow 20%, transparent 20%),
+                linear-gradient(to bottom left, yellow 20%, transparent 20%),
+                linear-gradient(to top right, yellow 20%, transparent 20%),
+                linear-gradient(to top left, yellow 20%, transparent 20%);
+    background-repeat: no-repeat;
+    background-size: 20% 20%, 20% 20%, 20% 20%, 20% 20%;
+    background-position: top left, top right, bottom right, bottom left;
+    z-index: 1000; /* Make sure it's above other content */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 1s; /* Smooth transition */
+}
+
+/* Full-screen overlay effect */
+.fullscreen-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Prevent interaction with the overlay */
+    z-index: 1000; /* Make sure it's above other content */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s; /* Smooth transition for fade out */
+}
+
+/* Epic effect */
+.epic-effect {
+    background-color: purple;
+}
+
+/* Jackpot effect */
+.jackpot-effect {
+    background-color: gold;
+}
+
+/* Discord effect */
+.discord-effect {
+    background: url('your-image-url.jpg') no-repeat center center; /* Replace 'your-image-url.jpg' with your actual image URL */
+    background-size: cover; /* Ensure the image covers the entire screen */
+}
+
+/* Show the effect */
+.fullscreen-effect.show {
+    opacity: 1; /* Show the effect instantly */
+}
+
+#goBackButton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#goBackButton:hover {
+    background-color: #45a049;
+}
