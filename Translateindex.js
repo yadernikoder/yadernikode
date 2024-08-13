@@ -6,20 +6,20 @@ let bloodySound = new Audio('Hollowin.mp3');
 let rainbowSound = new Audio('Rainbows.mp3');
 let uncommonSound = new Audio('select-sound-121244.mp3');
 let shineSound = new Audio('Wow.mp3');
-let epicSound = new Audio('Epic.mp3'); // Replace with your actual sound file
-let sixtyNineSound = new Audio('69.mp3'); // Replace with your actual sound file
-let rareSound = new Audio('Discord.mp3'); // Replace with your actual sound file
-let discordSound = new Audio('Ultrads.mp3'); // Replace with your actual sound file
-let alertSound = new Audio('bruh-sound-effect-2-37927.mp3')
+let epicSound = new Audio('Epic.mp3');
+let sixtyNineSound = new Audio('69.mp3');
+let rareSound = new Audio('Discord.mp3');
+let discordSound = new Audio('Ultrads.mp3');
+let alertSound = new Audio('bruh-sound-effect-2-37927.mp3');
 
 function createEffect(effectClass, duration, backgroundColor) {
     let effectElement = document.createElement('div');
     effectElement.classList.add('fullscreen-effect', effectClass);
-    effectElement.style.backgroundColor = backgroundColor; // Apply background color
+    effectElement.style.backgroundColor = backgroundColor;
     document.body.appendChild(effectElement);
     setTimeout(() => {
         effectElement.classList.add('show');
-    }, 100); // Short delay before showing
+    }, 100);
 
     setTimeout(() => {
         effectElement.classList.remove('show');
@@ -27,8 +27,8 @@ function createEffect(effectClass, duration, backgroundColor) {
             if (effectElement.parentNode) {
                 effectElement.parentNode.removeChild(effectElement);
             }
-        }, 500); // Allow time for fade outc
-    }, duration); // Duration before starting fade out
+        }, 500);
+    }, duration);
 }
 
 function resetButton() {
@@ -51,105 +51,99 @@ function triggerEvent() {
             if (existingEffect.parentNode) {
                 existingEffect.parentNode.removeChild(existingEffect);
             }
-        }, 500); // Allow time for fade out
+        }, 500);
     }
 
     setTimeout(() => {
-        let randomNumber = Math.random() * 100; // Random number between 0 and 100
+        let randomNumber = Math.random(); // Random number between 0 and 1
 
-        if (randomNumber <= 1) {
+        if (randomNumber <= 1 / 100) {
             // Epic event
             eventName.textContent = "Epic! (1 in 100)";
             document.body.style.backgroundColor = 'purple';
             epicSound.play();
-            createEffect('epic-effect', 2000, 'purple'); // Purple effect for 2 seconds
-            setTimeout(resetButton, 6000); // Button re-enable after 5 seconds
+            createEffect('epic-effect', 2000, 'purple');
+            setTimeout(resetButton, 6000);
 
-        } else if (randomNumber <= 1.45) {
+        } else if (randomNumber <= 1 / 69) {
             // 69 event
             eventName.textContent = "69 Event! (1 in 69)";
             document.body.style.backgroundColor = 'pink';
             sixtyNineSound.play();
-            setTimeout(resetButton, 6000); // Button re-enable after 1.5 seconds
+            setTimeout(resetButton, 6000);
 
-        } else if (randomNumber <= 3.125) {
+        } else if (randomNumber <= 1 / 32) {
             // Rare event
             eventName.textContent = "Rare! (1 in 32)";
             document.body.style.backgroundColor = 'blue';
             rareSound.play();
-            setTimeout(resetButton, 2500); // Button re-enable after 1.5 seconds
+            setTimeout(resetButton, 2500);
 
-        } else if (randomNumber <= 0.333) {
+        } else if (randomNumber <= 1 / 300) {
             // Discord event
             eventName.textContent = "Discord! (1 in 300)";
             document.body.style.backgroundColor = 'lightblue';
-            document.body.style.backgroundImage = 'url("https://i.ytimg.com/vi/7V5jdOjWVU4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCCLmAxRosK3Ltbar9OdDhUHFuDug")'; // Replace with your actual image URL
-            document.body.style.backgroundSize = 'cover'; // Ensure the image covers the entire background
-            document.body.style.backgroundPosition = 'center'; // Center the image
+            document.body.style.backgroundImage = 'url("https://i.ytimg.com/vi/7V5jdOjWVU4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCCLmAxRosK3Ltbar9OdDhUHFuDug")';
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center';
             discordSound.play();
-            createEffect('discord-effect', 500, 'lightblue'); // Light blue effect for 0.5 seconds
+            createEffect('discord-effect', 500, 'lightblue');
             setTimeout(() => {
                 resetButton();
-                document.body.style.backgroundColor = '#35797b'; // Reset to default background color
-                document.body.style.backgroundImage = ''; // Remove the background image
-            }, 25000); // Button re-enable and background reset after 25 seconds
+                document.body.style.backgroundColor = '#35797b';
+                document.body.style.backgroundImage = '';
+            }, 25000);
 
-        } else if (randomNumber <= 0.13) {
+        } else if (randomNumber <= 1 / 777) {
             // Jackpot event
             eventName.textContent = "Jackpot! (1 in 777)";
             document.body.style.backgroundColor = 'gold';
             jackpotSound.play();
-            createEffect('jackpot-effect', 2000, 'gold'); // Gold effect for 2 seconds
-            setTimeout(resetButton, 7777); // Button re-enable after 2 seconds
+            createEffect('jackpot-effect', 2000, 'gold');
+            setTimeout(resetButton, 7777);
 
-        } else if (randomNumber <= 0.15) {
+        } else if (randomNumber <= 1 / 666) {
             // Bloody event
             eventName.textContent = "Bloody! (1 in 666)";
             document.body.style.backgroundColor = 'red';
             bloodySound.play();
-            setTimeout(resetButton, 3500); // 1.5 seconds cooldown for bloody event
+            setTimeout(resetButton, 3500);
 
-        } else if (randomNumber <= 4) {
+        } else if (randomNumber <= 1 / 25) {
             // Shine event
             eventName.textContent = "Shine! (1 in 25)";
             shineSound.play();
-            createEffect('shine-effect', 1000, 'yellow'); // Yellow effect for 1 second
+            createEffect('shine-effect', 1000, 'yellow');
             document.body.style.backgroundColor = 'yellow';
-            setTimeout(resetButton, 2500); // Button re-enable after 1 second
+            setTimeout(resetButton, 2500);
 
-        } else if (randomNumber <= 0.1) {
+        } else if (randomNumber <= 1 / 1000) {
             // Rainbow event
             eventName.textContent = "Rainbow! (1 in 1000)";
             document.body.classList.add('animation-rainbow');
             rainbowSound.play();
-            setTimeout(resetButton, 35000); // 10 seconds cooldown for rainbow event
+            setTimeout(resetButton, 35000);
 
-        } else if (randomNumber <= 12.5) {
+        } else if (randomNumber <= 1 / 8) {
             // Uncommon event
             eventName.textContent = "Uncommon! (1 in 8)";
             uncommonSound.play();
-            setTimeout(resetButton, 1500); // 1.5 seconds cooldown for uncommon event
+            setTimeout(resetButton, 1500);
 
-        }else if (randomNumber <= 3.125) {
+        } else if (randomNumber <= 1 / 32) {
             // Alert event
             eventName.textContent = "Alert! (1 in 32)";
-            alert("wow")
             alertSound.play();
             document.body.style.backgroundColor = 'Orange';
-            alert(wow);
-            setTimeout(resetButton, 500); // 1.5 seconds cooldown for uncommon event
+            setTimeout(resetButton, 500);
 
         } else {
             // Nothing event
             eventName.textContent = "Nothing (1 in 2)";
             document.body.style.backgroundColor = '#35797b';
-            setTimeout(resetButton, 500); // Ensure button is reset even for "Nothing"
+            setTimeout(resetButton, 500);
         }
-        
-        
-        
-
-    }, 1000); // Delay for animation
+    }, 1000);
 }
 
 button.addEventListener('click', triggerEvent);
