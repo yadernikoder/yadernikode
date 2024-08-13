@@ -36,6 +36,6 @@ document.getElementById('openPageButton3').addEventListener('click', function() 
 });
 
 document.getElementById('openPageButton4').addEventListener('click', function() {
-    window.location.href = 'Traindex.html'; // Replace 'newpage.html' with the path to your new HTML file
+    window.location.href = 'BaBaBaBaBIndex.html'; // Replace 'newpage.html' with the path to your new HTML file
 });
 
