@@ -2,7 +2,6 @@ let button = document.getElementById('rng-button');
 let eventName = document.getElementById('event-name');
 let buttonSound = new Audio('lick.mp3');
 let jackpotSound = new Audio('777.mp3');
-let alertSound = new Audio('Alert.mp3');
 let bloodySound = new Audio('Hollowin.mp3');
 let rainbowSound = new Audio('Rainbows.mp3');
 let uncommonSound = new Audio('select-sound-121244.mp3');
@@ -11,6 +10,7 @@ let epicSound = new Audio('Epic.mp3'); // Replace with your actual sound file
 let sixtyNineSound = new Audio('69.mp3'); // Replace with your actual sound file
 let rareSound = new Audio('Discord.mp3'); // Replace with your actual sound file
 let discordSound = new Audio('Ultrads.mp3'); // Replace with your actual sound file
+let alertSound = new Audio('bruh-sound-effect-2-37927.mp3')
 
 function createEffect(effectClass, duration, backgroundColor) {
     let effectElement = document.createElement('div');
@@ -27,7 +27,7 @@ function createEffect(effectClass, duration, backgroundColor) {
             if (effectElement.parentNode) {
                 effectElement.parentNode.removeChild(effectElement);
             }
-        }, 500); // Allow time for fade out
+        }, 500); // Allow time for fade outc
     }, duration); // Duration before starting fade out
 }
 
@@ -88,7 +88,11 @@ function triggerEvent() {
             document.body.style.backgroundPosition = 'center'; // Center the image
             discordSound.play();
             createEffect('discord-effect', 500, 'lightblue'); // Light blue effect for 0.5 seconds
-            setTimeout(resetButton, 25000); // Button re-enable after 1 second
+            setTimeout(() => {
+                resetButton();
+                document.body.style.backgroundColor = '#35797b'; // Reset to default background color
+                document.body.style.backgroundImage = ''; // Remove the background image
+            }, 25000); // Button re-enable and background reset after 25 seconds
 
         } else if (randomNumber <= 0.13) {
             // Jackpot event
@@ -126,12 +130,25 @@ function triggerEvent() {
             uncommonSound.play();
             setTimeout(resetButton, 1500); // 1.5 seconds cooldown for uncommon event
 
+        }else if (randomNumber <= 3.125) {
+            // Alert event
+            eventName.textContent = "Alert! (1 in 32)";
+            alert("wow")
+            alertSound.play();
+            document.body.style.backgroundColor = 'Orange';
+            alert(wow);
+            setTimeout(resetButton, 500); // 1.5 seconds cooldown for uncommon event
+
         } else {
             // Nothing event
             eventName.textContent = "Nothing (1 in 2)";
             document.body.style.backgroundColor = '#35797b';
             setTimeout(resetButton, 500); // Ensure button is reset even for "Nothing"
         }
+        
+        
+        
+
     }, 1000); // Delay for animation
 }
 
