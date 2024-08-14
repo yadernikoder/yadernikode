@@ -334,14 +334,3 @@ if (counters) {
     `;
 }
 
-function resetLocalStorage() {
-    if (confirm("Are you sure you want to reset all local storage data?")) {
-        localStorage.clear();
-        alert("Local storage has been reset.");
-    } else {
-        alert("Reset canceled.");
-    }
-}
-
-// Call the function to reset local storage
-resetLocalStorage();
