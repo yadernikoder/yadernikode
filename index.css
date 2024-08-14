@@ -1,0 +1,59 @@
+/* Centered Container */
+.container {
+  width: 300px;
+  padding: 20px;
+  margin: auto;
+  background-color: #f0f0f0; /* Light gray background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; /* Center the text and elements */
+}
+
+/* Style for input field */
+input[type="text"] {
+  width: 100%;  /* Make the input field take full width */
+  padding: 8px; 
+  box-sizing: border-box;
+  margin-bottom: 10px; /* Space between input and button */
+}
+
+/* Style for button */
+#LogInButton {
+  width: 100%;  /* Make the button take full width */
+  padding: 10px; 
+  border: none; 
+  background-color: #007bff; 
+  color: white; 
+  cursor: pointer; 
+  box-sizing: border-box;
+}
+
+/* Optional: Add some hover effect for the button */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Additional button styling */
+#goToPage2 {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  width: 100%;  /* Make the button take full width */
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px; /* Space between the two buttons */
+}
+
+body {
+  background-color: #35797b; /* Page background */
+  margin: 0; /* Remove default margin */
+  height: 100vh; /* Ensure the body takes full height of the viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="bibindex.css" />
+    </head>
+    <body>
+        <center>
+            <h1 id="scoreId">Score: 0</h1>
+            <h4>Rules:</h4>
+            <p>Press the arrow on your key board or <button></button> as many times as you can until it disappears </p>
+            <p>When you see it on the screen</p>
+            <p>Just don't over do it! Or you will lose.</p>
+            <p>And don't press the wrong arrow!</p>
+            <img id="arrowId" src="" />
+            <h2 id="bestScoreId">Best Score: 0</h2>
+
+            <audio id="ClickSound" src="select-sound-121244.mp3"></audio>
+            <audio id="ClickSoundl" src="bruh-sound-effect-2-37927.mp3"></audio>
+            <audio id="ClickSoundw" src="WINEER.mp3"></audio>
+            <!-- Buttons for simulating arrow key presses -->
+            <div id="controls">
+                <button onclick="simulateKeyPress('ArrowLeft')">⬅️ Left</button>
+                <button onclick="simulateKeyPress('ArrowDown')">⬇️ Down</button>
+                <button onclick="simulateKeyPress('ArrowUp')">⬆️ Up</button>
+                <button onclick="simulateKeyPress('ArrowRight')">➡️ Right</button>
+            </div>
+        </center>
+        <div class="container">
+            <button id="goBackButton" onclick="goBack()">Go Back</button>
+        </div>
+        <script src="bibindex.js"></script>
+    </body>
+</html>

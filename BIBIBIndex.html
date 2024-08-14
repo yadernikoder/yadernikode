@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Game Start</title>
+        <link rel="stylesheet" href="BIBIBIndex.css" />
+    </head>
+    <body>
+        <div id="startMenu">
+            <h1>Press the Start Button to Begin</h1>
+            <button id="startButton">Start</button>
+        </div>
+
+        <h1 id="scoreId"></h1>
+        <img src="player.png" id="player" />
+        <img src="car.webp" id="enemy" />
+        
+        <!-- Added Jump Button -->
+       <center><button id="jumpButton">Jump/space</button></center> 
+
+        <div id="floor"></div>
+
+        <script src="BIBIBIndex.js"></script>
+
+        <div class="container">
+            <button id="goBackButton" onclick="goBack()">Go Back</button>
+        </div>
+    </body>
+</html>

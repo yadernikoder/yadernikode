@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    background-color: #35797b;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+button img {
+    display: block;
+    width: 500px; /* Adjust size as needed */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+button img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}

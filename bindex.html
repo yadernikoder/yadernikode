@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Daily Wordle</title>
+        <link rel="stylesheet" href="hello.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Daily Wordle</h1>
+            <input type="text" placeholder="Enter your guess" id="wordId" />
+            <button onclick="guess()" id="TRY">Try</button>
+            <div id="container"></div>
+            <div id="attempts">Attempts: 0 /10 </div>
+        </div>
+        <audio id="guessSound" src="mech-keyboard-02-102918.mp3"></audio>
+        <audio id="guessSoundLoose" src="8-bit-video-game-lose-sound-version-1-145828.mp3"></audio>
+        <audio id="guessSoundWin" src="brass-fanfare-with-timpani-and-winchimes-reverberated-146260.mp3"></audio>
+        
+
+        <div class="ccontainer">
+            <button id="goBackButton" onclick="goBack()">Go Back</button>
+        </div>
+        
+        <script src="whatever.js"></script>
+    </body>
+</html>
