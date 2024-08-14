@@ -1,10 +1,17 @@
 function login() {
-    let username = document.getElementById("username")
-    localStorage.setItem("username", username.value)
-    location.href = "bank.html"
-    let audio = new Audio("ADF.mp3");
-    audio.play(); 
+    let usernameInput = document.getElementById("username");
+    let username = usernameInput.value.trim();
+
+    if (username) {
+        localStorage.setItem("username", username);
+        location.href = "bank.html";
+        let audio = new Audio("ADF.mp3");
+        audio.play(); 
+    } else {
+        alert("Please enter a username.");
+    }
 }
+
 document.addEventListener("DOMContentLoaded", function() {
     const goToPage2Button = document.getElementById('goToPage2');
     const backToPage1Button = document.getElementById('backToPage1');

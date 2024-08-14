@@ -1,72 +1,143 @@
-/* Styles for the container */
-.container {
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #35797b;
+    overflow: hidden;
+}
+
+#container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    height: 90vh;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 
-/* Button styles */
+#event-name-container {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
 #rng-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
     background-color: #4CAF50;
     color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    border: none;
     border-radius: 5px;
-    outline: none;
-    margin-top: 20px;
+    cursor: pointer;
 }
 
-/* Slot machine container */
-#slot-machine {
-    width: 300px;
-    height: 100px;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid white;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#rng-button:disabled {
+    background-color: red;
 }
 
-/* Event name display */
-#event-name {
-    font-size: 24px;
-    font-weight: bold;
+#event-counters {
+    position: fixed; /* Fixed position for staying on the right side */
+    right: 10px; /* Position from the right edge */
+    top: 10px; /* Position from the top edge */
     color: white;
-    white-space: nowrap;
-    transform: translateY(0);
-    transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    text-align: right;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    padding: 10px;
+    border-radius: 10px;
 }
 
-/* Animation for slot machine */
-.animation-spin {
-    animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+.fullscreen-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
-/* Additional animations */
-.animation-fade {
-    animation: fade 1s forwards;
+.fullscreen-effect.show {
+    opacity: 1;
 }
 
-@keyframes fade {
-    from {
-        background-color: yellow;
+.epic-flash {
+    animation: epic-flash 0.8s forwards;
+}
+
+@keyframes epic-flash {
+    0% {
+        background-color: purple;
     }
-    to {
+    100% {
         background-color: #35797b;
     }
 }
 
-.animation-rainbow {
-    animation: rainbow 1s linear infinite;
+.rainbow-background {
+    animation: rainbow-background 1s forwards;
 }
 
-@keyframes rainbow {
+@keyframes rainbow-background {
+    0% { background-color: red; }
+    17% { background-color: orange; }
+    34% { background-color: yellow; }
+    51% { background-color: green; }
+    68% { background-color: blue; }
+    85% { background-color: indigo; }
+    100% { background-color: violet; }
+}
+
+.animation-rainbow {
+    animation: rainbow-effect 1s;
+}
+
+@keyframes rainbow-effect {
+    0% { background-color: red; }
+    17% { background-color: orange; }
+    34% { background-color: yellow; }
+    51% { background-color: green; }
+    68% { background-color: blue; }
+    85% { background-color: indigo; }
+    100% { background-color: violet; }
+}
+
+.rainbow-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998; /* Ensure it's below the fullscreen effect but above other content */
+    background-color: red; /* Default to the starting color */
+    animation: rainbow-flash 1s forwards;
+    pointer-events: none;
+}
+
+@keyframes rainbow-flash {
+    0% { background-color: red; }
+    17% { background-color: orange; }
+    34% { background-color: yellow; }
+    51% { background-color: green; }
+    68% { background-color: blue; }
+    85% { background-color: indigo; }
+    100% { background-color: violet; }
+}
+
+.rainbow-background-fast {
+    animation: rainbow-background-fast 1s infinite; /* 1 second per cycle, infinite loop */
+}
+
+@keyframes rainbow-background-fast {
     0% { background-color: red; }
     14% { background-color: orange; }
     28% { background-color: yellow; }
@@ -77,64 +148,10 @@
     100% { background-color: red; }
 }
 
-/* Shine effect for corners */
-.shine-effect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none; /* Prevent interaction with the shine effect */
-    background: linear-gradient(to bottom right, yellow 20%, transparent 20%),
-                linear-gradient(to bottom left, yellow 20%, transparent 20%),
-                linear-gradient(to top right, yellow 20%, transparent 20%),
-                linear-gradient(to top left, yellow 20%, transparent 20%);
-    background-repeat: no-repeat;
-    background-size: 20% 20%, 20% 20%, 20% 20%, 20% 20%;
-    background-position: top left, top right, bottom right, bottom left;
-    z-index: 1000; /* Make sure it's above other content */
-    opacity: 0; /* Initially hidden */
-    transition: opacity 1s; /* Smooth transition */
-}
-
-/* Full-screen overlay effect */
-.fullscreen-effect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none; /* Prevent interaction with the overlay */
-    z-index: 1000; /* Make sure it's above other content */
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.5s; /* Smooth transition for fade out */
-}
-
-/* Epic effect */
-.epic-effect {
-    background-color: purple;
-}
-
-/* Jackpot effect */
-.jackpot-effect {
-    background-color: gold;
-}
-
-/* Discord effect */
-.discord-effect {
-    background: url('your-image-url.jpg') no-repeat center center; /* Replace 'your-image-url.jpg' with your actual image URL */
-    background-size: cover; /* Ensure the image covers the entire screen */
-}
-
-/* Show the effect */
-.fullscreen-effect.show {
-    opacity: 1; /* Show the effect instantly */
-}
-
 #goBackButton {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 20px;
     padding: 10px 20px;
     font-size: 16px;
     background-color: #4CAF50;
@@ -148,4 +165,141 @@
 #goBackButton:hover {
     background-color: #45a049;
 }
+
+.star-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1500px;
+    height: 1500px;
+    background: url('https://static.vecteezy.com/system/resources/thumbnails/000/378/728/small_2x/Basic_Elements__28120_29.jpg') no-repeat center center; /* Add your star image here */
+    background-size: contain;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 998; /* Ensure it's behind the event name and button */
+    animation: star-flash 0.2s forwards;
+}
+
+@keyframes star-flash {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
+.light-blue-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: lightblue;
+    z-index: 9998; /* Ensure it's below the fullscreen effect but above other content */
+    animation: light-blue-flash 1s forwards;
+    pointer-events: none;
+}
+
+@keyframes light-blue-flash {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.spin-effect {
+    animation: spin 0.1s linear infinite; /* Faster spinning */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.jackpot-background {
+    background-image: url('https://s.yimg.com/ny/api/res/1.2/Los6mzCRSjJasrN3ToweBw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM2MA--/https://media.zenfs.com/en/gobankingrates_644/8568c31625dea6e5aa8f75163bedfd92'); /* Replace with your image path */
+    background-size: cover; /* Ensure the image covers the entire screen */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-attachment: fixed; /* Keep the image fixed relative to the viewport */
+    /* No spinning animation for Jackpot */
+}
+
+/* Coin Drop Animation */
+@keyframes coin-drop {
+    0% {
+        transform: translateY(-100px); /* Start above the viewport */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh); /* End below the viewport */
+        opacity: 0;
+    }
+}
+
+.coin {
+    position: absolute;
+    font-size: 48px; /* Make coins larger */
+    color: gold;
+    animation: coin-drop 10s ease-in forwards; /* Fall for 20 seconds */
+    opacity: 1; /* Ensure coins are visible */
+    /* Randomize animation delay and timing */
+    animation-delay: calc(7.7s * var(--random-delay)); /* Delay to spread out falls */
+    animation-timing-function: ease-in;
+}
+
+/* Container for coins to handle overflow */
+.coin-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Hide overflow coins */
+}
+
+/* Shine Event Flash Effect */
+.shine-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: yellow;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.shine-effect.show {
+    opacity: 1;
+}
+
+/* Epic Event Gradient Background */
+.epic-effect {
+    background: linear-gradient(to bottom, lightpurple, purple, darkpurple);
+}
+
+/* Add these colors to your existing color definitions */
+.lightpurple {
+    color: #d3a6e0; /* Example light purple color */
+}
+
+.purple {
+    color: #8a2be2; /* Example purple color */
+}
+
+.darkpurple {
+    color: #4b0082; /* Example dark purple color */
+}
+
+
+
+
+
 
