@@ -314,22 +314,23 @@ function createCoinDropEffect() {
     }
 }
 
+// Add the following block inside your `updateEventCounters` function
 
-function updateEventCounters() {
-    let counters = document.getElementById('event-counters');
-    if (counters) {
-        counters.innerHTML = `
-            Nothing: ${eventCounts.nothing}<br>
-            Uncommon: ${eventCounts.uncommon}<br>
-            Epic: ${eventCounts.epic}<br>
-            69 Event: ${eventCounts.sixtyNine}<br>
-            Rare: ${eventCounts.rare}<br>
-            Discord: ${eventCounts.discord}<br>
-            Jackpot: ${eventCounts.jackpot}<br>
-            Bloody[halloween] ${eventCounts.bloody}<br>
-            Shine: ${eventCounts.shine}<br>
-            Rainbow: ${eventCounts.rainbow}<br>
-            Alert: ${eventCounts.alert}<br>
-        `;
-    }
+let counters = document.getElementById('event-counters');
+if (counters) {
+    counters.innerHTML = `
+        Nothing: ${eventCounts.nothing}<br>
+        Uncommon: ${eventCounts.uncommon}<br>
+        Epic: ${eventCounts.epic}<br>
+        69 Event: ${eventCounts.sixtyNine}<br>
+        Rare: ${eventCounts.rare}<br>
+        Ultra Rare: ${eventCounts.ultraRare}<br> <!-- Add this line -->
+        Discord: ${eventCounts.discord}<br>
+        Jackpot: ${eventCounts.jackpot}<br>
+        Bloody: ${eventCounts.bloody}<br>
+        Shine: ${eventCounts.shine}<br>
+        Rainbow: ${eventCounts.rainbow}<br>
+        Alert: ${eventCounts.alert}<br>
+    `;
 }
+
