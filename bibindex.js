@@ -183,3 +183,4 @@ function isValidHex(hex) {
 // Run applyPreferences() when this script is loaded
 document.addEventListener('DOMContentLoaded', applyPreferences);
 
+
