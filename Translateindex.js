@@ -4,14 +4,15 @@ let buttonSound = new Audio('lick.mp3');
 let jackpotSound = new Audio('777.mp3');
 let bloodySound = new Audio('Hollowin.mp3');
 let rainbowSound = new Audio('Rainbows.mp3');
-let uncommonSound = new Audio('select-sound-121244.mp3');
+let uncommonSound = new Audio('mixkit-modern-technology-select-3124.wav');
 let shineSound = new Audio('Wow.mp3');
 let epicSound = new Audio('EpicS.mp3');
 let sixtyNineSound = new Audio('69.mp3');
 let rareSound = new Audio('Discord.mp3');
 let discordSound = new Audio('Ultrads.mp3');
-let alertSound = new Audio('bruh-sound-effect-2-37927.mp3');
+let alertSound = new Audio('Alert.mp3');
 let RarerSound = new Audio('Epic.mp3');
+let RareSound = new Audio('Rare.mp3')
 
 // Retrieve username from localStorage
 const username = localStorage.getItem('username') || 'defaultUser';
@@ -68,18 +69,125 @@ function updateEventCounters() {
             Shine: ${eventCounts.shine}<br>
             Rainbow: ${eventCounts.rainbow}<br>
             Alert: ${eventCounts.alert}<br>
-            Common: ${eventCounts.common}
         `;
     }
 }
+let spinCount = 0; // Track the number of spins
 
-// Define the new sound for the 'shine' event if needed
-// Update the triggerEvent function to include the new 'shine' event
+
+const originalThresholds = {
+    ultraRare: 1 / 32,
+    rare: 1 / 16,
+    alert: 1 / 50,
+    sixtyNine: 1 / 69,
+    epic: 1 / 100,
+    rainbow: 1 / 1000,
+    discord: 1 / 300,
+    jackpot: 1 / 777,
+    bloody: 1 / 666,
+    uncommon: 1 / 8, // This is not multiplied
+    nothing: 1 / 2 // Default chance for nothing
+};
+
+
+
+// Object to store event thresholds
+const thresholds = {
+    ultraRare: 1 / 32,
+    rare: 1 / 16,
+    alert: 1 / 50,
+    sixtyNine: 1 / 69,
+    epic: 1 / 100,
+    rainbow: 1 / 1000,
+    discord: 1 / 300,
+    jackpot: 1 / 777,
+    bloody: 1 / 666,
+    uncommon: 1 / 8, // This is not multiplied
+    nothing: 1 / 2 // Default chance for nothing
+};
+
+let isLuckyMessageShown = false; // Track if the lucky message is shown
+
+function handleSpecialEvent() {
+    spinCount++;
+
+    const messageElement = document.getElementById('chance-message');
+
+    if (spinCount % 10 === 0) { // Every 10th spin
+        button.style.backgroundColor = 'gold'; // Change button color to gold
+        displayChanceMessage(); // Show a message about the increased chances
+        increaseEventChances(); // Increase the chances for special events
+    } else {
+        button.style.backgroundColor = ''; // Reset button color if not every 10 spins
+        resetEventChances(); // Reset to original chances if it's not the 10th spin
+    }
+
+    if (spinCount % 10 === 9) {
+        if (messageElement) {
+            messageElement.textContent = 'Next spin will be x2 luck!';
+            messageElement.classList.add('show');
+        }
+    } else if (spinCount % 10 === 0 && messageElement) {
+        messageElement.classList.remove('show'); // Hide the message immediately before the special event
+    }
+}
+
+function resetEventChances() {
+    Object.assign(thresholds, originalThresholds);
+}
+
+
+
+// Function to display a message about the increased chances
+function displayChanceMessage() {
+    const messageElement = document.getElementById('chance-message');
+    messageElement.classList.add('show');
+
+    setTimeout(() => {
+        messageElement.classList.remove('show');
+    }, 3000); // Remove the message after 3 seconds
+}
+
+// Function to increase the chances of events (except "nothing" and "uncommon")
+function increaseEventChances() {
+    thresholds.ultraRare = (1 / 16) 
+    thresholds.rare = (1 / 8) 
+    thresholds.alert = (1 / 25) 
+    thresholds.sixtyNine = (1 / 34.6)
+    thresholds.epic = (1 / 50) 
+    thresholds.rainbow = (1 / 500) 
+    thresholds.discord = (1 / 150) 
+    thresholds.jackpot = (1 / 443.5) 
+    thresholds.bloody = (1 / 333)  
+}
+
+// Function to create coin drop effect
+function createCoinDropEffect() {
+    const container = document.createElement('div');
+    container.className = 'coin-drop-container';
+    document.body.appendChild(container);
+
+    for (let i = 0; i < 20; i++) {
+        const coin = document.createElement('div');
+        coin.className = 'coin';
+        coin.style.left = `${Math.random() * 100}vw`;
+        container.appendChild(coin);
+    }
+
+    setTimeout(() => {
+        document.body.removeChild(container);
+    }, 20000); // Remove the container after 20 seconds
+}
+
+// Function to trigger an event
 function triggerEvent() {
+    handleSpecialEvent(); // Check if special event handling is needed
+
     buttonSound.play();
     button.disabled = true; // Disable button when event is triggered
     button.style.backgroundColor = 'red';
 
+    // Reset all effects
     document.body.style.backgroundColor = '#35797b';
     document.body.classList.remove('animation-fade', 'animation-rainbow', 'animation-spin', 'rainbow-background', 'rainbow-background-fast', 'epic-flash', 'discord-spin', 'discord-background');
 
@@ -100,237 +208,175 @@ function triggerEvent() {
         let randomChance = Math.random(); // Generates a random number between 0 and 1
         console.log('Generated Random Chance:', randomChance); // Debugging line to check random chance
 
-        // Adjust the probabilities for all events
-        if (randomChance < 1 / 25) { // 1/25 chance for Shine
-            eventName.textContent = "Shine! (1 in 25)";
-            document.body.style.backgroundColor = 'yellow';
-            shineSound.play(); // Play the shine sound
-            createEffect('shine-effect', 300); // Flash effect for 0.3 seconds
-            eventCounts.shine++;
-            delay = 2000; // 2 seconds cooldown
-            eventType = 'shine';
-            nothingInRow = 0; // Reset nothingInRow
-        } else if (randomChance < 1 / 100) { // 1% chance for Epic
-            eventName.textContent = "Epic! (1 in 100)";
-            document.body.style.background = 'linear-gradient(to bottom, lightpurple, purple, darkpurple)'; // Update gradient colors
-            epicSound.play();
-            createEffect('epic-effect', 800); // Flash effect for 0.8 seconds
-            eventCounts.epic++;
-            delay = 3000; // 3 seconds cooldown
-            eventType = 'epic';
-            nothingInRow = 0; // Reset nothingInRow
-        } else if (randomChance < 1 / 69) { // Additional chance for 69 Event
+        // Adjusted sequential checking
+        if (randomChance < thresholds.ultraRare) { // Ultra Rare: 1 in 32
+            eventName.textContent = "Ultra Rare! (1 in 32)";
+            eventCounts.ultraRare++;
+            RarerSound.play();
+            delay = 4000; // 4 seconds cooldown
+            eventType = 'ultraRare';
+            nothingInRow = 0;
+            createEffect('star-flash', 200);
+
+        } else if (randomChance < thresholds.rare) { // Rare: 1 in 16
+            eventName.textContent = "Rare! (1 in 16)";
+            eventCounts.rare++;
+            RareSound.play();
+            delay = 4000;
+            eventType = 'rare';
+            nothingInRow = 0;
+
+        } else if (randomChance < thresholds.alert) { // Alert: 1 in 50
+            eventName.textContent = "Alert! (1 in 50)";
+            document.body.style.backgroundColor = '#ff0000';
+            alertSound.play();
+            createEffect('alert-effect', 500);
+            eventCounts.alert++;
+            delay = 5000;
+            eventType = 'alert';
+            nothingInRow = 0;
+            setTimeout(() => {
+                alert("!!!");
+            }, 1000);
+
+        } else if (randomChance < thresholds.sixtyNine) { // 69 Event: 1 in 69
             eventName.textContent = "69 Event! (1 in 69)";
             document.body.style.backgroundColor = 'pink';
             sixtyNineSound.play();
             createEffect('sixtyNine-effect', 2000);
             eventCounts.sixtyNine++;
-            delay = 6900; // 6.9 seconds cooldown
+            delay = 6900;
             eventType = 'sixtyNine';
-            nothingInRow = 0; // Reset nothingInRow
-        } else if (randomChance < 1 / 777) { // Additional chance for Jackpot
+            nothingInRow = 0;
+
+        } else if (randomChance < thresholds.epic) { // Epic: 1 in 100
+            eventName.textContent = "Epic! (1 in 100)";
+            document.body.style.background = 'linear-gradient(to bottom, lightpurple, purple, darkpurple)';
+            epicSound.play();
+            createEffect('epic-effect', 800);
+            eventCounts.epic++;
+            delay = 3000;
+            eventType = 'epic';
+            nothingInRow = 0;
+
+        } else if (randomChance < thresholds.rainbow) { // Rainbow: 1 in 1000
+            eventName.textContent = "Rainbow! (1 in 1000)";
+            document.body.classList.add('rainbow-background-fast');
+            rainbowSound.play();
+            createEffect('rainbow-flash', 1000);
+            createEffect('Rstar-flash', 40000);
+            eventCounts.rainbow++;
+            delay = 40000;
+            nothingInRow = 0;
+
+            setTimeout(() => {
+                document.body.classList.remove('rainbow-background-fast');
+                document.body.classList.add('rainbow-background');
+            }, 100000);
+
+        } else if (randomChance < thresholds.discord) { // Discord: 1 in 300
+            eventName.textContent = "Discord! (1 in 300)";
+            document.body.style.backgroundColor = 'DarkBlue';
+            createEffect('light-blue-flash', 1000);
+            document.body.classList.add('spin-effect');
+            discordSound.play();
+            eventCounts.discord++;
+            delay = 22000;
+            nothingInRow = 0;
+
+            setTimeout(() => {
+                document.body.style.backgroundImage = '';
+            }, 22000);
+
+            setTimeout(() => {
+                document.body.classList.remove('spin-effect');
+            }, 22000);
+
+        } else if (randomChance < thresholds.jackpot) { // Jackpot: 1 in 777
             eventName.innerHTML = "<span class='jackpot-rainbow-text'>Jackpot! (1 in 777)</span>";
             document.body.classList.add('jackpot-background');
             jackpotSound.play();
             createEffect('jackpot-effect', 2000);
             eventCounts.jackpot++;
-            delay = 7770; // 7.77 seconds cooldown
+            delay = 7770;
             eventType = 'jackpot';
-            nothingInRow = 0; // Reset nothingInRow
-            
-            // Create coin drop effect
+            nothingInRow = 0;
+
             createCoinDropEffect();
-            
-            // Remove the rainbow text effect after 7.7 seconds
+
             setTimeout(() => {
                 document.body.classList.remove('jackpot-background');
                 eventName.classList.remove('jackpot-rainbow-text');
-            }, 7700); // 7.7 seconds
-        } else if (randomChance < 1 / 300) { // Additional chance for Discord
-            eventName.textContent = "Discord! (1 in 300)";
-            
-            // Add the light blue flash effect
-            createEffect('light-blue-flash', 1000); // Flash for 1 second
-            document.body.style.backgroundColor = 'DarkBlue'
-            // Add spinning effect
-            document.body.classList.add('spin-effect');
-        
-            // Set background image and ensure it fits
-            document.body.style.backgroundImage = 'url("https://i.ytimg.com/vi/7V5jdOjWVU4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCCLmAxRosK3Ltbar9OdDhUHFuDug")';
-            document.body.style.backgroundSize = 'cover'; // Ensure the image covers the whole screen
-        
-            // Play sound and update counters
-            discordSound.play();
-            eventCounts.discord++;
-            delay = 22000; // 20 seconds cooldown
-        
-            // Stop spinning and remove the background image after 20 seconds
-            setTimeout(() => {
-                document.body.style.backgroundImage = ''; // Remove background image
-            }, 22000); // 20 seconds
-            setTimeout(() => {
-                document.body.classList.remove('spin-effect');
-            }, 22000);
-            nothingInRow = 0; // Reset nothingInRow
-        } else if (randomChance < 1 / 1000) { // Additional chance for Rainbow
-            eventName.textContent = "Rainbow! (1 in 1000)";
-            let rainbowFlash = document.createElement('div');
-            rainbowFlash.classList.add('rainbow-flash');
-            document.body.appendChild(rainbowFlash);
+            }, 7700);
 
-            document.body.classList.add('rainbow-background-fast'); // Add fast-changing background class
-            rainbowSound.play();
-            createEffect('rainbow-effect', 1000); // Flash effect for 1 second
-            eventCounts.rainbow++;
-            delay = 40000; // 40 seconds cooldown
-
-            // Remove the rainbow flash effect after 1 second
-            setTimeout(() => {
-                if (rainbowFlash.parentNode) {
-                    rainbowFlash.parentNode.removeChild(rainbowFlash);
-                }
-            }, 1000);
-
-            // Remove fast-changing background class after 100 seconds
-            setTimeout(() => {
-                document.body.classList.remove('rainbow-background-fast');
-                document.body.classList.add('rainbow-background');
-            }, 100000); // Change back to the longer rainbow background after 100 seconds
-            nothingInRow = 0; // Reset nothingInRow
-        } else if (randomChance < 1 / 16) { // Additional chance for Rare
-            eventName.textContent = "Rare! (1 in 16)";
-            eventCounts.rare++;
-            RarerSound.play();
-            delay = 4000; // 2 seconds cooldown
-            eventType = 'rare';
-            
-            // Change the background color to gold
-            document.body.style.backgroundColor = '#33bcc1';
-        
-            // Revert the background color back after 0.5 seconds
-            setTimeout(() => {
-                document.body.style.backgroundColor = '#35797b'; // Original background color
-            }, 500);
-        } else if (randomChance < 1 / 32) { // Additional chance for Ultra Rare
-            eventName.textContent = "Ultra Rare! (1 in 32)";
-            rareSound.play();
-            eventCounts.ultraRare++;
-            delay = 3000; // 3 seconds cooldown
-            document.body.style.backgroundColor = 'lightblue';
-            // Create and add the star flash element
-            let starFlash = document.createElement('div');
-            starFlash.classList.add('star-flash');
-            document.body.appendChild(starFlash);
-        
-            // Remove the star flash after animation completes
-            setTimeout(() => {
-                if (starFlash.parentNode) {
-                    starFlash.parentNode.removeChild(starFlash);
-                }
-            }, 200);
-        } else if (randomChance < 1 / 50) { // Additional chance for Alert
-            eventName.textContent = "Alert! (1 in 50)";
-            alert("!!!");
-            document.body.style.backgroundColor = 'orange';
-            alertSound.play();
-            eventCounts.alert++;
-            delay = 1000; // 1 second cooldown
-            eventType = 'alert';
-            nothingInRow = 0; // Reset nothingInRow
-           } else if (randomChance < 1 / 8) { // Additional chance for Uncommon
+        } else if (randomChance < thresholds.uncommon) { // Uncommon: 1 in 8
             eventName.textContent = "Uncommon! (1 in 8)";
-            uncommonSound.play(); // Play the uncommon sound
+            uncommonSound.play();
             eventCounts.uncommon++;
-            delay = 2000; // 2 seconds cooldown
+            delay = 2000;
             eventType = 'uncommon';
-            nothingInRow = 0; // Reset nothingInRow
-        
-        
-        }else { // Default to Nothing
+            nothingInRow = 0;
+
+        } else if (randomChance < thresholds.bloody) { // Bloody: 1 in 666
+            eventName.textContent = "Bloody! (1 in 666)";
+            document.body.style.backgroundColor = ''; // Reset background color
+            document.body.classList.add('bloody-background'); // Add the gradient animation class
+            bloodySound.play();
+            createEffect('bloody-effect', 500);
+            eventCounts.bloody++;
+            delay = 6666;
+            eventType = 'bloody';
+            nothingInRow = 0;
+
+        } else { // Default to Nothing
             eventName.textContent = "Nothing!";
             eventCounts.nothing++;
             nothingInRow++;
-            delay = Math.max(1000 - (nothingInRow * 50), 100); // Decrease cooldown by 100ms per "nothing" in a row, minimum 100ms
-            eventType = 'nothing';
+            delay = Math.max(100, 1000 - nothingInRow * 50);
         }
+        console.log('Cooldown time:', delay);
 
-        // Save updated event counts to localStorage based on the username
-        localStorage.setItem(`${username}_eventCounts`, JSON.stringify(eventCounts));
-        updateEventCounters();
-
-        console.log('Cooldown time:', delay); // Debugging line to check cooldown time
-
-        // Re-enable the button after the cooldown
         setTimeout(() => {
             button.disabled = false;
-            button.style.backgroundColor = ''; // Reset button color
-            button.style.visibility = 'visible'; // Ensure the button is visible
+            button.style.backgroundColor = '';
         }, delay);
-
-    }, delay); // Delay after the button is clicked
+    }, 1000);
 }
 
-// Define the function to create the shine effect
-function createEffect(effectName, duration) {
-    let effect = document.createElement('div');
-    effect.classList.add('fullscreen-effect', effectName);
-    document.body.appendChild(effect);
 
-    // Remove effect after the duration
-    setTimeout(() => {
-        if (effect.parentNode) {
-            effect.parentNode.removeChild(effect);
-        }
-    }, duration);
-}
 
-// Load event counters on page load
-updateEventCounters();
 
-// Add click event listener to the button
-button.addEventListener('click', triggerEvent);
 
-function goBack() {
-    window.location.href = 'bank.html'; 
-}
-
+// Function to create the coin drop effect
 function createCoinDropEffect() {
-    const container = document.getElementById('container'); // Ensure this ID matches your HTML structure
+    const coinDropContainer = document.createElement('div');
+    coinDropContainer.classList.add('coin-drop-container');
+    document.body.appendChild(coinDropContainer);
 
-    for (let i = 0; i < 777; i++) { // Increased number of coins
+    const totalCoins = 100; // Adjust the number of coins as needed
+
+    for (let i = 0; i < totalCoins; i++) {
         const coin = document.createElement('div');
         coin.classList.add('coin');
-        coin.innerText = '💰'; // Use emoji or any other symbol/image for coins
-
-        // Randomize initial horizontal position
-        coin.style.left = Math.random() * 100 + 'vw'; 
-        coin.style.top = Math.random() * -100 + 'px'; // Start above the viewport
-
-        // Randomize animation delay to spread out the drops
-        coin.style.setProperty('--random-delay', Math.random());
-
-        // Append the coin to the container
-        container.appendChild(coin);
+        coin.style.left = Math.random() * window.innerWidth + 'px';
+        coin.style.animationDelay = Math.random() * 2 + 's'; // Random delay for each coin
+        coinDropContainer.appendChild(coin);
     }
+
+    setTimeout(() => {
+        if (coinDropContainer.parentNode) {
+            coinDropContainer.parentNode.removeChild(coinDropContainer);
+        }
+    }, 20000); // Remove coins after 20 seconds
 }
 
-// Add the following block inside your `updateEventCounters` function
+// Event listener for the button click
+button.addEventListener('click', triggerEvent);
 
-let counters = document.getElementById('event-counters');
-if (counters) {
-    counters.innerHTML = `
-        Nothing: ${eventCounts.nothing}<br>
-        Uncommon: ${eventCounts.uncommon}<br>
-        Epic: ${eventCounts.epic}<br>
-        69 Event: ${eventCounts.sixtyNine}<br>
-        Rare: ${eventCounts.rare}<br>
-        Ultra Rare: ${eventCounts.ultraRare}<br> <!-- Add this line -->
-        Discord: ${eventCounts.discord}<br>
-        Jackpot: ${eventCounts.jackpot}<br>
-        Bloody: ${eventCounts.bloody}<br>
-        Shine: ${eventCounts.shine}<br>
-        Rainbow: ${eventCounts.rainbow}<br>
-        Alert: ${eventCounts.alert}<br>
-    `;
+// Initialize event counters on page load
+updateEventCounters();
+
+function goBack() {
+    window.location.href = 'bank.html'; // Replace with the actual file name of the previous page
 }
 

@@ -1,0 +1,102 @@
+/* Basic styling for the body */
+body {
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+/* Mobile mode styling */
+body.mobile-mode {
+    transform: scale(0.25); /* Adjust scale as needed */
+    transform-origin: top left; /* Keeps the scale from the top left corner */
+}
+
+/* Container for central alignment and spacing */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Styling for buttons */
+button {
+    background-color: #35797b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #2a5e60;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Styling for color picker and range input */
+input[type="color"] {
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+/* Mobile mode box styling */
+#mobileModeBox {
+    margin: 20px 0;
+}
+
+#mobileModeButton {
+    background-color: #ff8c00;
+}
+
+#mobileModeButton:hover {
+    background-color: #e07b00;
+}
+
+/* Text size controls styling */
+#textSizeControls {
+    margin: 20px 0;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+body.dark-mode button {
+    background-color: #555;
+}
+
+body.dark-mode button:hover {
+    background-color: #444;
+}
+
+body.dark-mode #mobileModeButton {
+    background-color: #ff6f00;
+}
+
+body.dark-mode #mobileModeButton:hover {
+    background-color: #e05e00;
+}
+
+/* Mobile mode styles */
+body.mobile-mode {
+    transform: scale(0.25); /* Scale down everything to 25% */
+    transform-origin: top left; /* Adjust the origin to the top left */
+    overflow: hidden; /* Hide overflow to prevent scrollbars */
+}

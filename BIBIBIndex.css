@@ -116,7 +116,6 @@ body {
     display: none; 
 }
 
-
 #scoreId,
 #player,
 #enemy,
@@ -146,4 +145,84 @@ body {
 
 #goBackButton:hover {
     background-color: #45a049;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333 !important;
+    color: #f0f0f0 !important;
+}
+
+body.dark-mode button {
+    background-color: #555;
+}
+
+body.dark-mode button:hover {
+    background-color: #444;
+}
+
+/* Mobile mode styling */
+
+body.mobile-mode #player {
+    width: 100.5px; /* 150px / 4 */
+    height: 100.5px; /* 150px / 4 */
+}
+
+body.mobile-mode .jump {
+    animation-duration: 2s; /* 1s * 3 */
+}
+
+body.mobile-mode #enemy {
+    animation-duration: 2.5s; /* 1.5s * 3 */
+}
+
+/* Mobile mode styling adjustments */
+body.mobile-mode #jumpButton {
+    display: block; /* Ensure the button is visible in mobile mode */
+    position: fixed;
+    bottom: 20px; /* Adjust the position to be more accessible on mobile */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 40px; /* Increase padding for better touch targets */
+    font-size: 24px; /* Larger font size for readability */
+    background-color: #f0ad4e;
+    border: none;
+    border-radius: 12px; /* Slightly larger border radius for a rounded look */
+    color: white;
+    cursor: pointer;
+    z-index: 1000; /* Ensure the button is above other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for better visibility */
+}
+
+body.mobile-mode #jumpButton:hover {
+    background-color: #e09e3a; /* Slightly darker color for hover effect */
+}
+/* Mobile mode styling adjustments */
+/* Mobile mode styling adjustments */
+/* Mobile mode styling adjustments */
+/* Mobile mode styling adjustments */
+body.mobile-mode #jumpButton {
+    display: block; /* Ensure the button is visible in mobile mode */
+    position: fixed;
+    top: 80%; /* Move the button a bit lower on the screen */
+    right: 100px; /* Move the button a bit more to the right */
+    width: 130px; /* Increase width to make the button larger */
+    height: 130px; /* Increase height to make the button larger */
+    padding: 0; /* Remove padding to maintain circular shape */
+    font-size: 24px; /* Increase font size for better readability */
+    background-color: #f0ad4e;
+    border: none;
+    border-radius: 50%; /* Make the button circular */
+    color: white;
+    cursor: pointer;
+    display: flex; /* Center text horizontally and vertically */
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    z-index: 1000; /* Ensure the button is above other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for better visibility */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+}
+
+body.mobile-mode #jumpButton:hover {
+    background-color: #e09e3a; /* Slightly darker color for hover effect */
 }

@@ -121,6 +121,7 @@ body {
     background-color: red; /* Default to the starting color */
     animation: rainbow-flash 1s forwards;
     pointer-events: none;
+    opacity: 1;
 }
 
 @keyframes rainbow-flash {
@@ -298,8 +299,64 @@ body {
     color: #4b0082; /* Example dark purple color */
 }
 
+/* CSS for the gradient background animation */
+@keyframes bloodGradient {
+    0% {
+        background-color: darkred;
+    }
+    100% {
+        background-color: red;
+    }
+
+        
+    
+}
+
+.bloody-background {
+    animation: bloodGradient 1.5s infinite;
+}
 
 
+/* Add this to your CSS file */
+#chance-message {
+    position: fixed;
+    top: 20px; /* Adjust the position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: gold;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 1000;
+    display: none; /* Hide by default */
+}
+
+#chance-message.show {
+    display: block; /* Show the message */
+}
+
+.hidden {
+    display: none; /* For hiding elements */
+}
+
+
+
+.Rstar-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1500px;
+    height: 1500px;
+    background: url('https://static.vecteezy.com/system/resources/thumbnails/000/378/728/small_2x/Basic_Elements__28120_29.jpg') no-repeat center center; /* Add your star image here */
+    background-size: contain;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 998; /* Ensure it's behind the event name and button */
+    animation: star-flash 0.2s infinite;
+}
 
 
 

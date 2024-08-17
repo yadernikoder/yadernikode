@@ -56,10 +56,16 @@ function jump() {
     }
     isJumping = true;
     player.classList.add('jump');
-    setTimeout(removeAnimation, 1000);
+
+    // Determine the animation duration based on mobile mode
+    const isMobileMode = document.body.classList.contains('mobile-mode');
+    const animationDuration = isMobileMode ? 2000 : 1000; // 2s for mobile, 1s for non-mobile
+
+    setTimeout(removeAnimation, animationDuration);
     let jumpSound = new Audio('jump.wav');
     jumpSound.play();
 }
+
 
 function removeAnimation() {
     player.classList.remove('jump');
@@ -126,3 +132,90 @@ function resetGame() {
 function goBack() {
     window.location.href = 'bank.html'; 
 }
+
+function applyBackgroundColor(color) {
+    console.log('Applying background color:', color); // Debug log
+    if (isValidHex(color)) {
+        if (document.body.classList.contains('dark-mode')) {
+            const darkenedColor = darkenColor(color, 50);
+            console.log('Dark mode active. Applying darkened color:', darkenedColor); // Debug log
+            document.body.style.backgroundColor = darkenedColor;
+        } else {
+            console.log('Light mode active. Applying color:', color); // Debug log
+            document.body.style.backgroundColor = color;
+        }
+    } else {
+        console.error('Invalid color:', color); // Error log
+    }
+}
+
+
+
+
+(function() {
+    // Dynamically load the global preferences script
+    const script = document.createElement('script');
+    script.src = 'babank.js'; // Update with the correct path
+    script.onload = function() {
+        console.log('Global preferences script loaded.');
+    };
+    document.head.appendChild(script);
+})();
+
+// global-preferences.js
+
+function applyPreferences() {
+    const body = document.body;
+
+    // Load saved preferences from localStorage
+    const savedMode = localStorage.getItem('mode');
+    const savedColor = localStorage.getItem('color');
+    const savedTextSize = localStorage.getItem('textSize') || '16px'; // Default text size if not saved
+    const savedMobileMode = localStorage.getItem('mobileMode') === 'true'; // Boolean from string
+
+    if (savedMode) {
+        body.classList.add(savedMode);
+    }
+
+    if (savedColor) {
+        applyBackgroundColor(savedColor);
+    } else {
+        // Default light mode background color if no color is saved
+        applyBackgroundColor('#35797b');
+    }
+
+    body.style.fontSize = savedTextSize; // Apply saved text size
+
+    if (savedMobileMode) {
+        body.classList.add('mobile-mode');
+    }
+}
+
+function applyBackgroundColor(color) {
+    if (isValidHex(color)) {
+        document.body.style.backgroundColor = color;
+    }
+}
+
+function isValidHex(hex) {
+    return /^#[0-9A-Fa-f]{6}$/.test(hex);
+}
+
+// Run applyPreferences() when this script is loaded
+document.addEventListener('DOMContentLoaded', applyPreferences);
+
+function applyBackgroundColor(color) {
+    if (isValidHex(color)) {
+        document.body.style.backgroundColor = color;
+    }
+}
+
+function isValidHex(hex) {
+    return /^#[0-9A-Fa-f]{6}$/.test(hex);
+}
+
+// Run applyPreferences() when this script is loaded
+document.addEventListener('DOMContentLoaded', applyPreferences);
+
+
+

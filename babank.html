@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark/Light Mode Toggle</title>
+    <link rel="stylesheet" href="babank.css">
+</head>
+<body>
+    <div class="container">
+        <button id="goBackButton" onclick="goBack()">Go Back</button>
+    </div>
+    <div class="container">
+        <div id="buttonContainer">
+            <button id="toggleButton">Toggle Dark Mode</button>
+            <div id="colorControls">
+                <button id="randomColorButton">Random Color</button>
+                <input type="color" id="colorPicker" value="#35797b">
+                <button id="applyColorButton">Apply Color</button>
+            </div>
+            <div id="mobileModeBox">
+                <button id="mobileModeButton">Toggle Mobile Mode</button>
+            </div>
+            <div id="textSizeControls">
+                <label id="textSizeLabel" for="textSizeRange">Text Size:</label>
+                <input type="range" id="textSizeRange" min="0" max="30" step="1" value="15">
+            </div>
+        </div>
+        <h1>This is how the text will look</h1>
+        <h2>This is how the text will look</h2>
+        <h3>This is how the text will look</h3>
+        <h4>This is how the text will look</h4>
+        <h5>This is how the text will look</h5>
+        <h6>This is how the text will look</h6>
+    </div>
+    <script src="babank.js"></script>
+</body>
+</html>

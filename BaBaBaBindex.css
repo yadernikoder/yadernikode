@@ -76,3 +76,28 @@ button.equals:hover {
 #goBackButton:hover {
     background-color: #45a049;
 }
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+body.dark-mode button {
+    background-color: #555;
+}
+
+body.dark-mode button:hover {
+    background-color: #444;
+}
+
+/* Mobile mode styling */
+body.mobile-mode {
+    transform: scale(0.25); /* Scale down everything to 25% */
+    transform-origin: top left; /* Adjust the origin to the top left */
+    overflow: hidden; /* Hide overflow to prevent scrollbars */
+}
+body.dark-mode {
+    background-color: #333 !important;
+    color: #f0f0f0 !important;
+}
