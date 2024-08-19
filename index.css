@@ -3,9 +3,9 @@
   width: 300px;
   padding: 20px;
   margin: auto;
-  background-color: #f0f0f0; /* Light gray background */
+  background-color: #ffffff; /* White background for better contrast */
   border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow for more depth */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -16,25 +16,30 @@
 /* Style for input field */
 input[type="text"] {
   width: 100%;  /* Make the input field take full width */
-  padding: 8px; 
+  padding: 10px; 
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 15px; /* Space between input and button */
   box-sizing: border-box;
-  margin-bottom: 10px; /* Space between input and button */
+  font-size: 16px; /* Larger font size for better readability */
 }
 
 /* Style for button */
 #LogInButton {
   width: 100%;  /* Make the button take full width */
-  padding: 10px; 
+  padding: 12px; 
   border: none; 
-  background-color: #007bff; 
+  background-color: #007bff; /* Primary blue color */
   color: white; 
   cursor: pointer; 
-  box-sizing: border-box;
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Larger font size for better readability */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-/* Optional: Add some hover effect for the button */
-button:hover {
-  background-color: #0056b3;
+/* Hover effect for the button */
+#LogInButton:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 /* Additional button styling */
@@ -42,11 +47,17 @@ button:hover {
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
-  padding: 10px;
+  padding: 12px;
   width: 100%;  /* Make the button take full width */
   cursor: pointer;
-  border-radius: 5px;
-  margin-top: 10px; /* Space between the two buttons */
+  border-radius: 5px; /* Rounded corners */
+  margin-top: 15px; /* Space between the two buttons */
+  font-size: 16px; /* Larger font size for better readability */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#goToPage2:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
 }
 
 body {

@@ -117,18 +117,18 @@ function applyBackgroundColor(color) {
 
 
 
+function applyBackgroundColor(color) {
+    console.log('Applying background color:', color); // Debug log
+    if (isValidHex(color)) {
+        document.body.style.backgroundColor = color;
+    } else {
+        console.error('Invalid color:', color); // Error log
+    }
+}
 
-(function() {
-    // Dynamically load the global preferences script
-    const script = document.createElement('script');
-    script.src = 'babank.js'; // Update with the correct path
-    script.onload = function() {
-        console.log('Global preferences script loaded.');
-    };
-    document.head.appendChild(script);
-})();
-
-// global-preferences.js
+function isValidHex(hex) {
+    return /^#[0-9A-Fa-f]{6}$/.test(hex);
+}
 
 function applyPreferences() {
     const body = document.body;
@@ -155,32 +155,17 @@ function applyPreferences() {
     if (savedMobileMode) {
         body.classList.add('mobile-mode');
     }
-}
 
-function applyBackgroundColor(color) {
-    if (isValidHex(color)) {
-        document.body.style.backgroundColor = color;
+    // Apply the selected background if exists
+    const selectedBackground = localStorage.getItem('selectedBackground');
+    if (selectedBackground) {
+        if (selectedBackground.startsWith('rgb')) {
+            document.body.style.backgroundColor = selectedBackground; // Apply the random color
+        } else {
+            document.body.style.backgroundImage = `url(${selectedBackground})`; // Apply the image
+            document.body.style.backgroundSize = 'cover'; // Ensure the background covers the whole page
+        }
     }
 }
 
-function isValidHex(hex) {
-    return /^#[0-9A-Fa-f]{6}$/.test(hex);
-}
-
-// Run applyPreferences() when this script is loaded
 document.addEventListener('DOMContentLoaded', applyPreferences);
-
-function applyBackgroundColor(color) {
-    if (isValidHex(color)) {
-        document.body.style.backgroundColor = color;
-    }
-}
-
-function isValidHex(hex) {
-    return /^#[0-9A-Fa-f]{6}$/.test(hex);
-}
-
-// Run applyPreferences() when this script is loaded
-document.addEventListener('DOMContentLoaded', applyPreferences);
-
-

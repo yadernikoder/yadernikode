@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const randomColorButton = document.getElementById('randomColorButton');
     const mobileModeButton = document.getElementById('mobileModeButton');
     const textSizeRange = document.getElementById('textSizeRange');
+    const resetBackgroundButton = document.getElementById('resetBackground');
     const body = document.body;
 
     // Load saved preferences from localStorage
@@ -12,12 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedColor = localStorage.getItem('color');
     const savedTextSize = localStorage.getItem('textSize') || '16px'; // Default text size if not saved
     const savedMobileMode = localStorage.getItem('mobileMode') === 'true'; // Boolean from string
+    const savedBackground = localStorage.getItem('selectedBackground'); // Background or color
 
     if (savedMode) {
         body.classList.add(savedMode);
     }
 
-    if (savedColor) {
+    if (savedBackground) {
+        if (savedBackground.startsWith('rgb') || savedBackground.startsWith('#')) {
+            applyBackgroundColor(savedBackground);
+        } else {
+            applyBackgroundImage(savedBackground);
+        }
+    } else if (savedColor) {
         applyBackgroundColor(savedColor);
         colorPicker.value = savedColor; // Update color picker to reflect saved color
     } else {
@@ -58,17 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
         applyBackgroundColor(chosenColor);
     });
 
-    randomColorButton.addEventListener('click', () => {
-        const randomColor = getRandomColor();
-        colorPicker.value = randomColor; // Update color picker to reflect the random color
-        applyBackgroundColor(randomColor);
-        localStorage.setItem('color', randomColor); // Save the random color
-    });
-
     textSizeRange.addEventListener('input', () => {
         const newSize = `${textSizeRange.value}px`;
         body.style.fontSize = newSize;
         localStorage.setItem('textSize', newSize); // Save the new text size
+    });
+
+    resetBackgroundButton.addEventListener('click', () => {
+        localStorage.removeItem('selectedBackground'); // Clear background setting
+        localStorage.removeItem('color'); // Optionally clear color setting
+        body.style.backgroundImage = ''; // Remove background image
+        body.style.backgroundColor = '#35797b'; // Set default background color
     });
 
     function applyBackgroundColor(color) {
@@ -87,6 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.error('Invalid color:', color); // Error log
         }
+    }
+
+    function applyBackgroundImage(url) {
+        console.log('Applying background image:', url); // Debug log
+        body.style.backgroundImage = `url(${url})`;
+        body.style.backgroundSize = 'cover'; // Ensure the background covers the whole page
+        body.style.backgroundRepeat = 'no-repeat'; // Prevent tiling
+        body.style.backgroundAttachment = 'fixed'; // Fix the image to the viewport
     }
 
     function darkenColor(hex, percent) {
@@ -121,5 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function goBack() {
-    window.history.back();
+    window.location.href = 'bank.html';
+}
+function goBack1() {
+    window.location.href = 'SBP.html';
+}
+function goBack2() {
+    window.location.href = 'BHG.html';
 }
